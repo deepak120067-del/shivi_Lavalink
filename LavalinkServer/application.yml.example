@@ -6,10 +6,10 @@ server: # REST and WS server
 plugins:
   lavasrc:
 
-    providers:
-      - "spotify"
-      - "ytmsearch:%QUERY%"
-      - "ytsearch:%QUERY%"
+ 	providers:
+  	- 'ytsearch:"%ISRC%"'
+  	- "ytmsearch:%QUERY%"
+  	- "ytsearch:%QUERY%"
 
     sources:
       spotify: true
@@ -22,8 +22,6 @@ plugins:
 #    some_key: some_value # Some key-value pair for the plugin
 #    another_key: another_value
 lavalink:
-  plugins:
-#    - dependency:  lavalink:
   plugins:
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.1"

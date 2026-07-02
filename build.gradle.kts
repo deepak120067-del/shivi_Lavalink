@@ -115,16 +115,27 @@ subprojects {
 }
 
 fun versionFromGit(): Pair<String, Boolean> {
+
+    if (!File(project.rootDir, ".git").exists()) {
+        logger.lifecycle("No .git directory found, using fallback version.")
+        return "4.1.1-SNAPSHOT" to false
+    }
+
     Grgit.open(mapOf("currentDir" to project.rootDir)).use { git ->
+
         val headTag = git.tag
             .list()
             .find { it.commit.id == git.head().id }
 
         val clean = git.status().isClean || System.getenv("CI") != null
+
         if (!clean) {
             logger.lifecycle("Git state is dirty, version is a snapshot.")
         }
 
-        return if (headTag != null && clean) headTag.name to true else "${git.head().id}-SNAPSHOT" to false
+        return if (headTag != null && clean)
+            headTag.name to true
+        else
+            "${git.head().id}-SNAPSHOT" to false
     }
 }
