@@ -16,7 +16,7 @@ WORKDIR /opt/Lavalink
 
 COPY --from=build /app/Lavalink-Server/build/libs/Lavalink.jar Lavalink.jar
 COPY Lavalink-Server/src/main/resources/application.yml /opt/Lavalink/application.yml.example
-COPY plugins/ /opt/Lavalink/plugins
+COPY plugins /opt/Lavalink/plugins
 
 EXPOSE 2333
 
