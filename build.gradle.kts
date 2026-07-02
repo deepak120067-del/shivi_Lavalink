@@ -32,6 +32,12 @@ allprojects {
         maven("https://maven.lavalink.dev/snapshots")
         maven("https://jitpack.io") // build projects directly from GitHub
     }
+
+    plugins.withId("com.gorylenko.gradle-git-properties") {
+        configure<com.gorylenko.GitPropertiesPluginExtension> {
+            failOnNoGitDirectory = false
+        }
+    }
 }
 
 subprojects {
@@ -115,16 +121,21 @@ subprojects {
 }
 
 fun versionFromGit(): Pair<String, Boolean> {
-    Grgit.open(mapOf("currentDir" to project.rootDir)).use { git ->
-        val headTag = git.tag
-            .list()
-            .find { it.commit.id == git.head().id }
+    return try {
+        Grgit.open(mapOf("currentDir" to project.rootDir)).use { git ->
+            val headTag = git.tag
+                .list()
+                .find { it.commit.id == git.head().id }
 
-        val clean = git.status().isClean || System.getenv("CI") != null
-        if (!clean) {
-            logger.lifecycle("Git state is dirty, version is a snapshot.")
+            val clean = git.status().isClean || System.getenv("CI") != null
+            if (!clean) {
+                logger.lifecycle("Git state is dirty, version is a snapshot.")
+            }
+
+            if (headTag != null && clean) headTag.name to true else "${git.head().id}-SNAPSHOT" to false
         }
-
-        return if (headTag != null && clean) headTag.name to true else "${git.head().id}-SNAPSHOT" to false
+    } catch (e: Exception) {
+        logger.lifecycle("Git not available (${e.message}), using fallback version.")
+        "dev-SNAPSHOT" to false
     }
 }
