@@ -4,14 +4,30 @@ server: # REST and WS server
   http2:
     enabled: false # Whether to enable HTTP/2 support
 plugins:
+  lavasrc:
+
+    providers:
+      - "spotify"
+      - "ytmsearch:%QUERY%"
+      - "ytsearch:%QUERY%"
+
+    sources:
+      spotify: true
+      youtube: true
+
+    spotify:
+      clientId: "${SPOTIFY_CLIENT_ID}"
+      clientSecret: "${SPOTIFY_CLIENT_SECRET}"
 #  name: # Name of the plugin
 #    some_key: some_value # Some key-value pair for the plugin
 #    another_key: another_value
 lavalink:
   plugins:
-#    - dependency: "com.github.example:example-plugin:1.0.0" # required, the coordinates of your plugin
-#      repository: "https://maven.example.com/releases" # optional, defaults to the Lavalink releases repository by default
-#      snapshot: false # optional, defaults to false, used to tell Lavalink to use the snapshot repository instead of the release repository
+#    - dependency:  lavalink:
+  plugins:
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.1"
+      repository: "https://maven.lavalink.dev/releases" 
 #  pluginsDir: "./plugins" # optional, defaults to "./plugins"
 #  defaultPluginRepository: "https://maven.lavalink.dev/releases" # optional, defaults to the Lavalink release repository
 #  defaultPluginSnapshotRepository: "https://maven.lavalink.dev/snapshots" # optional, defaults to the Lavalink snapshot repository
