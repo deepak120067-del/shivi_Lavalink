@@ -11,5 +11,6 @@ RUN chown -R lavalink:lavalink /opt/Lavalink
 USER lavalink
 
 COPY LavalinkServer/build/libs/Lavalink.jar Lavalink.jar
+COPY LavalinkServer/src/main/resources/application.yml /opt/Lavalink/application.yml.example
 
 ENTRYPOINT ["java", "-jar", "Lavalink.jar"]
