@@ -48,11 +48,13 @@ plugins:
     enabled: true
     clients:
       - WEB
-      - WEB_REMIX
       - ANDROID_VR
-      - WEB_EMBEDDED_PLAYER
-
+      
+plugins:
   lavasrc:
+    spotify:
+      clientId: ${SPOTIFY_CLIENT_ID}
+      clientSecret: ${SPOTIFY_CLIENT_SECRET}
     providers:
       - "ytsearch:%QUERY%"
       - "ytmsearch:%QUERY%"
