@@ -1,17 +1,24 @@
-FROM eclipse-temurin:18-jre-jammy
+# ---------- Build Stage ----------
+FROM eclipse-temurin:17-jdk AS build
 
-# Run as non-root user
-RUN groupadd -g 322 lavalink && \
-    useradd -r -u 322 -g lavalink lavalink
+WORKDIR /app
+
+COPY . .
+
+RUN chmod +x gradlew
+
+RUN ./gradlew :Lavalink-Server:bootJar -x test
+
+RUN find /app -name "*.jar"
+
+# ---------- Runtime Stage ----------
+FROM eclipse-temurin:17-jre
 
 WORKDIR /opt/Lavalink
 
-RUN chown -R lavalink:lavalink /opt/Lavalink
-
-USER lavalink
-
-COPY Lavalink-Server/build/libs/Lavalink.jar Lavalink.jar
-COPY Lavalink-Server/src/main/resources/application.yml /opt/Lavalink/application.yml.example
+COPY --from=build /app/LavalinkServer/build/libs/Lavalink.jar Lavalink.jar
 COPY plugins/ ./plugins/
 
-ENTRYPOINT ["java", "-jar", "Lavalink.jar"]
+EXPOSE 2333
+
+ENTRYPOINT ["java","-jar","Lavalink.jar"]
