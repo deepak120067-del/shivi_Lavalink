@@ -15,7 +15,6 @@ FROM eclipse-temurin:17-jre
 WORKDIR /opt/Lavalink
 
 COPY --from=build /app/Lavalink-Server/build/libs/Lavalink.jar Lavalink.jar
-COPY Lavalink-Server/src/main/resources/application.yml /opt/Lavalink/application.yml.example
 COPY plugins/ ./plugins/
 
 EXPOSE 2333
