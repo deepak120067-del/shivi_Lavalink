@@ -6,7 +6,7 @@ lavalink:
   pluginsDir: "./plugins"
 
   server:
-    password: "Shivi@2006"
+    password: "LAVALINK_PASSWORD"
 
     sources:
       youtube: false
