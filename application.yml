@@ -1,0 +1,66 @@
+server:
+  address: 0.0.0.0
+  port: ${PORT:2333}
+
+lavalink:
+  pluginsDir: "./plugins"
+
+  server:
+    password: "LAVALINK_PASSWORD"
+
+    sources:
+      youtube: false
+      soundcloud: true
+      bandcamp: true
+      twitch: true
+      vimeo: true
+      nico: true
+      http: true
+      local: false
+
+    filters:
+      volume: true
+      equalizer: true
+      karaoke: true
+      timescale: true
+      tremolo: true
+      vibrato: true
+      distortion: true
+      rotation: true
+      channelMix: true
+      lowPass: true
+
+    playerUpdateInterval: 5
+    youtubeSearchEnabled: true
+    soundcloudSearchEnabled: true
+
+plugins:
+  youtube:
+    enabled: true
+    clients:
+      - WEB
+      - WEB_REMIX
+      - ANDROID_VR
+      - WEB_EMBEDDED_PLAYER
+
+  lavasrc:
+    providers:
+      - "ytsearch:%QUERY%"
+      - "ytmsearch:%QUERY%"
+      - "scsearch:%QUERY%"
+
+    sources:
+      spotify: false
+      applemusic: false
+      deezer: false
+      yandexmusic: false
+      flowerytts: false
+
+metrics:
+  prometheus:
+    enabled: false
+
+logging:
+  level:
+    root: INFO
+    lavalink: INFO
