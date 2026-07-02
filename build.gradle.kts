@@ -3,6 +3,7 @@ import com.vanniktech.maven.publish.SonatypeHost
 import org.ajoberstar.grgit.Grgit
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.File
 
 plugins {
     id("org.jetbrains.dokka") version "1.8.20" apply false
@@ -116,26 +117,37 @@ subprojects {
 
 fun versionFromGit(): Pair<String, Boolean> {
 
-    if (!File(project.rootDir, ".git").exists()) {
-        logger.lifecycle("No .git directory found, using fallback version.")
-        return "4.1.1-SNAPSHOT" to false
+    val gitDir = File(project.rootDir, ".git")
+
+    if (!gitDir.exists()) {
+        logger.lifecycle("Running without Git. Using fallback version.")
+        return "4.1.1" to false
     }
 
-    Grgit.open(mapOf("currentDir" to project.rootDir)).use { git ->
+    return try {
 
-        val headTag = git.tag
-            .list()
-            .find { it.commit.id == git.head().id }
+        Grgit.open(mapOf("currentDir" to project.rootDir)).use { git ->
 
-        val clean = git.status().isClean || System.getenv("CI") != null
+            val headTag = git.tag
+                .list()
+                .find { it.commit.id == git.head().id }
 
-        if (!clean) {
-            logger.lifecycle("Git state is dirty, version is a snapshot.")
+            val clean = git.status().isClean || System.getenv("CI") != null
+
+            if (!clean) {
+                logger.lifecycle("Git state is dirty.")
+            }
+
+            if (headTag != null && clean)
+                headTag.name to true
+            else
+                "${git.head().id}-SNAPSHOT" to false
         }
 
-        return if (headTag != null && clean)
-            headTag.name to true
-        else
-            "${git.head().id}-SNAPSHOT" to false
+    } catch (e: Exception) {
+
+        logger.lifecycle("Git unavailable: ${e.message}")
+
+        "4.1.1" to false
     }
 }
