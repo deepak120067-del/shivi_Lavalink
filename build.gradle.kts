@@ -4,6 +4,7 @@ import org.ajoberstar.grgit.Grgit
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.File
+import com.gorylenko.GitPropertiesPlugin
 
 plugins {
     id("org.jetbrains.dokka") version "1.8.20" apply false
@@ -149,5 +150,10 @@ fun versionFromGit(): Pair<String, Boolean> {
         logger.lifecycle("Git unavailable: ${e.message}")
 
         "4.1.1" to false
+    }
+}
+tasks.matching { it.name == "generateGitProperties" }.configureEach {
+    onlyIf {
+        File(rootDir, ".git").exists()
     }
 }
