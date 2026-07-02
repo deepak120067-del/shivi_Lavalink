@@ -5,11 +5,10 @@ server: # REST and WS server
     enabled: false # Whether to enable HTTP/2 support
 plugins:
   lavasrc:
-
- 	providers:
-  	- 'ytsearch:"%ISRC%"'
-  	- "ytmsearch:%QUERY%"
-  	- "ytsearch:%QUERY%"
+    providers:
+      - 'ytsearch:"%ISRC%"'
+      - "ytmsearch:%QUERY%"
+      - "ytsearch:%QUERY%"
 
     sources:
       spotify: true
