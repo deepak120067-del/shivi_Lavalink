@@ -12,5 +12,6 @@ USER lavalink
 
 COPY Lavalink-Server/build/libs/Lavalink.jar Lavalink.jar
 COPY Lavalink-Server/src/main/resources/application.yml /opt/Lavalink/application.yml.example
+COPY plugins/ /opt/Lavalink/plugins
 
 ENTRYPOINT ["java", "-jar", "Lavalink.jar"]
