@@ -18,7 +18,8 @@ WORKDIR /opt/Lavalink
 
 COPY --from=build /app/LavalinkServer/build/libs/Lavalink.jar Lavalink.jar
 COPY plugins/ ./plugins/
+COPY application.yml /opt/Lavalink/application.yml
 
 EXPOSE 2333
 
-ENTRYPOINT ["java","-jar","Lavalink.jar"]
+ENTRYPOINT ["java","-jar","Lavalink.jar","--spring.config.location=file:/opt/Lavalink/application.yml"]
