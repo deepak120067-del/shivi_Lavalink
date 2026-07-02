@@ -7,10 +7,9 @@ COPY . .
 
 RUN chmod +x gradlew
 
-RUN ./gradlew :LavalinkServer:bootJar -x test
+RUN ./gradlew :Lavalink-Server:bootJar -x test
 
-# Optional: verify the jar exists during the build
-RUN find /app -name "Lavalink.jar"
+RUN find /app -name "*.jar"
 
 # ---------- Runtime Stage ----------
 FROM eclipse-temurin:17-jre
@@ -22,4 +21,4 @@ COPY plugins/ ./plugins/
 
 EXPOSE 2333
 
-ENTRYPOINT ["java", "-jar", "Lavalink.jar"]
+ENTRYPOINT ["java","-jar","Lavalink.jar"]
