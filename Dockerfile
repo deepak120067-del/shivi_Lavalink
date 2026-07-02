@@ -7,7 +7,7 @@ COPY . .
 
 RUN chmod +x gradlew
 
-RUN ./gradlew :LavalinkServer:bootJar -x test
+RUN ./gradlew :Lavalink.Server:bootJar -x test
 
 # ---------- Runtime Stage ----------
 FROM eclipse-temurin:17-jre
