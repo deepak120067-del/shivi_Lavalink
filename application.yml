@@ -12,10 +12,7 @@ server:
   port: ${PORT:2333}
 
 lavalink:
-  plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.0"
-
-    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.1"
+  pluginsDir: "./plugins"
 
   server:
     password: "Shivi@2006"
