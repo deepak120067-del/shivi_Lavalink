@@ -50,12 +50,9 @@ plugins:
   youtube:
     enabled: true
     clients:
-      plugins:
-  youtube:
-    enabled: true
-    clients:
       - WEBEMBEDDED
       - WEB
+  
       
 
   lavasrc:
