@@ -50,7 +50,7 @@ plugins:
       - WEB
       - ANDROID_VR
       
-plugins:
+
   lavasrc:
     spotify:
       clientId: ${SPOTIFY_CLIENT_ID}
