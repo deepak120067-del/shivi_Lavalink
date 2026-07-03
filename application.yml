@@ -50,8 +50,10 @@ plugins:
   youtube:
     enabled: true
     clients:
+      - MUSIC
       - WEBEMBEDDED
       - WEB
+      - IOS
   
       
 
