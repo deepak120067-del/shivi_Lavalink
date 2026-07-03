@@ -54,7 +54,7 @@ plugins:
   youtube:
     enabled: true
     clients:
-      - IOS
+      - WEBEMBEDDED
       - WEB
       
 
