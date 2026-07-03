@@ -12,7 +12,10 @@ server:
   port: ${PORT:2333}
 
 lavalink:
-  pluginsDir: "./plugins"
+  plugins:
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.0"
+
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.1"
 
   server:
     password: "Shivi@2006"
@@ -49,7 +52,7 @@ plugins:
     clients:
       - MUSIC
       - ANDROID
-      - WEBEMBEDDED
+      - IOS
       - TVHTML5EMBEDDED
       
 
