@@ -50,9 +50,12 @@ plugins:
   youtube:
     enabled: true
     clients:
-      - WEB
-      - WEB_REMIX
+      plugins:
+  youtube:
+    enabled: true
+    clients:
       - IOS
+      - WEB
       
 
   lavasrc:
