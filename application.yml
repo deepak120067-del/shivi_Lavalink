@@ -47,8 +47,10 @@ plugins:
   youtube:
     enabled: true
     clients:
-      - WEB
-      - ANDROID_VR
+      - MUSIC
+      - ANDROID
+      - WEBEMBEDDED
+      - TVHTML5EMBEDDED
       
 
   lavasrc:
