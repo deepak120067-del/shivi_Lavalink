@@ -51,10 +51,12 @@ plugins:
     allowDirectVideoIds: true
 
     clients:
-      - ANDROID
-      - TVHTML5EMBEDDED
       - WEB
-
+      - ANDROID
+      - TVHTML5_SIMPLY
+      - Music
+      - IOS
+      - ANDROID_VR
   lavasrc:
 
     spotify:
