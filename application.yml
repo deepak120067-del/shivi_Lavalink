@@ -48,7 +48,9 @@ plugins:
     enabled: true
     oauth:
       enabled: true
-      
+      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
+      skipInitialization: true
+    
     allowSearch: true
     allowDirectVideoIds: true
 
