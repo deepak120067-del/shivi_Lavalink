@@ -51,12 +51,9 @@ plugins:
     allowDirectVideoIds: true
 
     clients:
-      - MUSIC
-      - TVHTML5EMBEDDED
-      - WEBEMBEDDED
-      - WEB
-      - ANDROID_VR
       - ANDROID
+      - TVHTML5EMBEDDED
+      - WEB
 
   lavasrc:
 
