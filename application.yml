@@ -49,13 +49,17 @@ plugins:
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
-      skipInitialization: true
+      skipInitialization: false
     
     allowSearch: true
     allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
 
     clients:
       - WEB
+      - TV
+      - ANDROID
+      - IOS
       - WEBEMBEDDED
       - TVHTML5_SIMPLY
   lavasrc:
