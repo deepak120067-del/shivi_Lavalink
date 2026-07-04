@@ -56,11 +56,8 @@ plugins:
 
     clients:
       - WEB
-      - ANDROID
+      - WEBEMBEDDED
       - TVHTML5_SIMPLY
-      - Music
-      - IOS
-      - ANDROID_VR
   lavasrc:
 
     spotify:
