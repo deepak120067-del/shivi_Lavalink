@@ -1,24 +1,15 @@
 spring:
   application:
+    name: Lavalink
     version: "1.0"
-    formatted-version: "(v1.0)"
-    name: "Lavalink"
-  cloud:
-    config:
-      enabled: false
 
 server:
   address: 0.0.0.0
   port: ${PORT:2333}
 
 lavalink:
-  plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
-
-    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
-
   server:
-    password: "Shivi@2006"
+    password: ${LAVALINK_PASSWORD}
 
     sources:
       youtube: false
@@ -43,24 +34,33 @@ lavalink:
       lowPass: true
 
     playerUpdateInterval: 5
-    youtubeSearchEnabled: true
-    soundcloudSearchEnabled: true
+
+  plugins:
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
+
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
 
 plugins:
   youtube:
     enabled: true
+
+    allowSearch: true
+    allowDirectVideoIds: true
+
     clients:
       - MUSIC
+      - TVHTML5EMBEDDED
+      - WEBEMBEDDED
       - WEB
-      
-  
-      
+      - ANDROID_VR
+      - ANDROID
 
   lavasrc:
+
     spotify:
       clientId: ${SPOTIFY_CLIENT_ID}
       clientSecret: ${SPOTIFY_CLIENT_SECRET}
-    
+
     providers:
       - "ytmsearch:%QUERY%"
       - "ytsearch:%QUERY%"
@@ -81,3 +81,4 @@ logging:
   level:
     root: INFO
     lavalink: INFO
+    dev.lavalink.youtube: DEBUG
