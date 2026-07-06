@@ -2,6 +2,7 @@ spring:
   application:
     name: Lavalink
     version: "1.0"
+
   cloud:
     config:
       enabled: false
@@ -36,40 +37,18 @@ lavalink:
       channelMix: true
       lowPass: true
 
-    playerUpdateInterval: 5
+    playerUpdateInterval: 250
 
   plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.1"
-
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
 
 plugins:
-  youtube:
-    enabled: true
-    oauth:
-      enabled: true
-      refreshToken: "${YOUTUBE_REFRESH_TOKEN}"
-      skipInitialization: false
-    
-    allowSearch: true
-    allowDirectVideoIds: true
-    allowDirectPlaylistIds: true
-
-    clients:
-      - WEB
-      - TV
-      - ANDROID
-      - IOS
-      - WEBEMBEDDED
-      - TVHTML5_SIMPLY
   lavasrc:
-
     spotify:
       clientId: ${SPOTIFY_CLIENT_ID}
       clientSecret: ${SPOTIFY_CLIENT_SECRET}
 
     providers:
-      - "ytmsearch:%QUERY%"
       - "ytsearch:%QUERY%"
       - "scsearch:%QUERY%"
 
@@ -88,4 +67,3 @@ logging:
   level:
     root: INFO
     lavalink: INFO
-    dev.lavalink.youtube: DEBUG
