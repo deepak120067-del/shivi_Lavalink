@@ -49,7 +49,7 @@ plugins:
       clientSecret: ${SPOTIFY_CLIENT_SECRET}
 
     providers:
-      - "ytsearch:%QUERY%"
+      - "ytmsearch:%QUERY%"
       - "scsearch:%QUERY%"
 
     sources:
